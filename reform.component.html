@@ -1,0 +1,48 @@
+<div style="margin:auto;width:50%" [formGroup]="registrationForm">
+    <h1 class="text-center">Registration Form</h1>
+    <div class="form-group mt-2">
+        <label class="form-label">name</label>
+        <input class="form-control" type="text" formControlName="name" placeholder="enter your name">
+        <div class="error" *ngIf="!registrationFormErrors.name.pristine">
+            <label *ngIf="registrationFormErrors.name.errors?.required">name is required</label>
+            <label *ngIf="registrationFormErrors.name.errors?.minlength">name should be min 3 characters</label>
+            <label *ngIf="registrationFormErrors.name.errors?.maxlength">name should be max 10 characters</label>
+        </div>
+    </div>
+    <div class="form-group mt-2">
+        <label class="form-label">email</label>
+        <input class="form-control" type="text" formControlName="email" placeholder="enter your email">
+        <div class="errors" *ngIf="!registrationFormErrors.name.pristine"> </div>
+        <label *ngIf="registrationFormErrors.email.errors?.required">email is required</label>
+    </div>
+    <div class="form-group mt-2">
+        <label class="form-control">password</label>
+        <input type="text" class="form-control" formControlName="password" placeholder="enter your password">
+    </div>
+    <div>
+        <label class="form-group mt-2">gender</label>
+        <br>
+        <input type="radio" class="form-check-input" formControlName="gender" value="male" name="gender">male
+        <input type="radio" class="form-check-input" formControlName="gender" value="female" name="gender">female
+    </div>
+    <div class="form-group mt-2">
+        <label>country</label>
+        <select class="form-control" formControlName="country">
+            <option value="">select country</option>
+            <option *ngFor="let country of countries" [value]="country">
+                {{country}}
+            </option>
+        </select>
+    </div>
+
+    <label class="form-group mt-2">DOB*</label>
+    <input type="date" formControlName="dob" class="form-control">
+    <div class="form-check mt-2">
+        <input class="form-check-input" type="checkbox">I agree all the terms and conditions
+        <div class="mt-4">
+            <button class="btn btn-primary" (click)="register()">
+                Register
+            </button>
+        </div>
+    </div>
+</div>
